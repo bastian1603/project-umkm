@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lj Beauty | Cart</title>
+    <link rel="icon" type="image/x-icon" href="/image/favicon.ico">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/style.css" type="text/css">
+</head>
+<body onload="load()">
+ 
+<!-- Offcanvas Menu Begin -->
+<div aria-live="polite" aria-atomic="true" style="bottom:20px; right: 20px; position: fixed; min-height: 200px; z-index:2">
+    <!-- Container untuk menampilkan toast -->
+    <div id="toast_container" style="position: absolute; top: 0px; right: 0px;"></div>
+</div>
+
+
+<div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+       
+        <div class="offcanvas__logo">
+            <a href="/"><img src="image/logo lj beauty house.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row center">
+                <div class="col-xl-3 col-lg-2 mid">
+                    <div class="header__logo">
+                        <a href="/"><img src="image/logo lj beauty house.png" alt="" width="77px"> <span style="font-size: 20px; color:black;">| Lj Beauty</Span></a>
+                    </div>
+                </div>
+                
+                <div class="col-xl-5 col-lg-4">
+                 
+                </div>
+                <div class="col-lg-4">
+
+                        <nav class="header__menu">
+                            <ul>
+                                <li class="{{ $title === 'Home'? 'active' : '' }}"><a href="/">Home</a></li>
+                                <li class="{{ $title === 'Catalogue'? 'active' : '' }}"><a href="/catalogue">Catalogue</a></li>
+                                <li class="{{ $title === 'Cart'? 'active' : '' }}"><a href="/cart">Cart</a></li>
+                                <li class="{{ $title === 'Contact Us'? 'active' : '' }}"><a href="/contact">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                        
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+
+    <section class="shop-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shop__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart_container">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <form action="#" class="checkout__form">
+                <div class="row">
+                    <div class="col-lg-12 more-mrgin">
+                        <h5>Billing detail</h5>
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <div class="checkout__form__input">
+                                    <label for="name"><p>Name <span>*</span></p></label>
+                                    <input type="text" id="nama_penerima" placeholder="Masukkan nama penerima" required>
+                                </div>
+                                <div class="checkout__form__input">
+                                    <label for="phone_number"><p>No. WhatsApp <span>*</span></p></label>
+                                    <input type="number" id="no_hp_penerima" placeholder="Masukkan no. whatsapp (Cth : 0812 1233 1233)" required>
+                                </div>
+                                
+                                <div class="checkout__form__input more-mrgin-btm">
+                                    <div>
+                                        <label for="pembayaran"><p>Cara Pembayaran <span>*</span></p></label>
+                                    </div>
+                                    <div>
+                                        <select name="pembayaran" id="pembayaran">
+                                            <option value="" disabled selected>Pilih metode pembayaran</option>
+                                            <option value="COD">COD</option>
+                                            <option value="transfer">Transfer</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                   
+                                <div class="checkout__form__input">
+                                    <label for="alamat"><p>Address <span>*</span></p></label>
+                                    <input type="textarea" id="address" placeholder="Masukkan alamat tujuan pengiriman" required>
+
+                                    <div class="checkout__form__input">
+                                        <p>Order notes </p>
+                                        <input type="text"
+                                        placeholder="Note about your order, e.g, special noe for delivery" id="note">
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        <div class="col-lg-6 justify-contend-end">
+                            <div class="checkout__order">
+                                <h5>Your order</h5>
+                                <div class="checkout__order__product" >
+                                    <ul id="daftar_cart">
+                                    </ul>
+                                </div>
+                                <div class="checkout__order__total">
+                                    <ul>
+                                        <li>Total <span id="total"></span></li>
+                                    </ul>
+                                </div>
+                                <button class="site-btn" onclick="cart.to_wa()">Memesan Online</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            <section>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="cart__btn">
+                        <a href="/catalogue">Continue Shopping</a>
+                    </div>
+                </div>
+               
+            </div>
+
+        </div>
+    </section>
+    <!-- Shop Cart Section End -->
+
+        <!-- Instagram Begin -->
+        <div class="instagram">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta1.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta2.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta3.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta4.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta5.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta6.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Instagram End -->
+
+        <!-- Footer Section Begin -->
+        <footer>
+        <div class="footer-container" >
+            <div class="footer-logo">
+                <h2>LJ Beauty House</h2>
+            </div>
+           
+            <div class="footer-links">
+                <a href="https://wa.me/6282362052767" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                </a>
+                <a href="https://www.instagram.com/ljbeautyhouse/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                </a>
+                <a href="https://www.instagram.com/yourinstagramlink" target="_blank">
+                    <img src="https://freepnglogo.com/images/all_img/1697562980facebook-logo-transparent.png" alt="Facebook">
+                </a>
+            </div>
+            <div class="footer-copyright mid">
+                <p>&copy; 2024 LJ Beauty House. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+        <!-- Search End -->
+
+
+
+
+    <!-- Js Plugins -->
+
+    <script src="../public/js/cart.js" type="text/javascript"></script>
+
+    <script src="../public/js/jquery-3.3.1.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="../public/js/jquery.magnific-popup.min.js"></script>
+    <script src="../public/js/jquery-ui.min.js"></script>
+    <script src="../public/js/mixitup.min.js"></script>
+    <script src="../public/js/jquery.countdown.min.js"></script>
+    <script src="../public/js/jquery.slicknav.js"></script>
+    <script src="../public/js/owl.carousel.min.js"></script>
+    <script src="../public/js/jquery.nicescroll.min.js"></script>
+    <script src="../public/js/main.js"></script>
+    
+
+</body>
+</html>

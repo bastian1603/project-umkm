@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lj Beauty | Shop</title>
+    <link rel="icon" type="image/x-icon" href="../public/image/favicon.ico">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/style.css" type="text/css">
+</head>
+<body onload="load()">
+ 
+<!-- Offcanvas Menu Begin -->
+<div aria-live="polite" aria-atomic="true" style="bottom:20px; right: 20px; position: fixed; min-height: 200px; z-index:2">
+    <!-- Container untuk menampilkan toast -->
+    <div id="toast_container" style="position: absolute; top: 0px; right: 0px;"></div>
+</div>
+
+
+<div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+       
+        <div class="offcanvas__logo">
+            <a href="/"><img src="image/logo lj beauty house.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row center">
+                <div class="col-xl-3 col-lg-2 mid">
+                    <div class="header__logo">
+                        <a href="/"><img src="image/logo lj beauty house.png" alt="" width="77px"> <span style="font-size: 20px; color:black;">| Lj Beauty</Span></a>
+                    </div>
+                </div>
+                
+                <div class="col-xl-5 col-lg-4">
+                 
+                </div>
+                <div class="col-lg-4">
+
+                        <nav class="header__menu">
+                            <ul>
+                                <li class="{{ $title === 'Home'? 'active' : '' }}"><a href="/">Home</a></li>
+                                <li class="{{ $title === 'Catalogue'? 'active' : '' }}"><a href="/catalogue">Catalogue</a></li>
+                                <li class="{{ $title === 'Cart'? 'active' : '' }}"><a href="/cart">Cart</a></li>
+                                <li class="{{ $title === 'Contact Us'? 'active' : '' }}"><a href="/contact">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                        
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <body onload="load()">
+        <!-- Page Preloder -->
+        <div id="preloder">
+            <div class="loader"></div>
+        </div>
+    
+        <div class="col-10 search-box">
+            <form action="">
+                <input onchange="return_data()" type="text" name="search_input" id="search_input">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    
+        <!-- Shop Section Begin -->
+        <section class="shop spad">
+    
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="shop__sidebar">
+                            <div class="sidebar__categories">
+                                <div class="section-title">
+                                    <h4>Filtering</h4>
+                                </div>
+                                <form class="categories__accordion">
+                                    <div class="accordion" id="accordionExample">
+                                        
+                                        <div class="card">
+                                            <div class="card-heading">
+                                                <a data-toggle="collapse" data-target="#collapseTwo">by Brand</a>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <ul class="ls-no">
+                                                        <li loading="lazy" >
+                                                        <a href="/catalogue?brand={{ $brand->id }}">    
+                                                            Brand Name 0
+                                                        </a>
+                                                        </li>
+                                                        <li loading="lazy" >
+                                                        <a href="/catalogue?brand={{ $brand->id }}">    
+                                                            Brand Name 1
+                                                        </a>
+                                                        </li>
+                                                        <li loading="lazy" >
+                                                        <a href="/catalogue?brand={{ $brand->id }}">    
+                                                            Brand Name 2
+                                                        </a>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+    
+                                        <div class="card">
+                                            <div class="card-heading">
+                                                <a data-toggle="collapse" data-target="#collapseThree">by Category</a>
+                                            </div>
+                                            <div id="collapseThree" class="collapse" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <ul class="ls-no">
+                                                        <li>
+                                                            <a href="/catalogue?category={{ $category->id }}">
+                                                            Category Name 0
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/catalogue?category={{ $category->id }}">
+                                                            Category Name 1
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/catalogue?category={{ $category->id }}">
+                                                            Category name 2
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                         
+                                    </div>
+                                </form>
+                            </div>
+    
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9">
+                        <div class="row products-box" id="product_list">
+    
+                        
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mix women more-mrgin">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg">
+                        <img src="../public/image/IMG_5603.JPG" alt="{{ $product->product_name }}">
+                        <ul class="product__hover">
+                            <li onclick="insert('{{$product->id }}', '{{ addslashes($product->product_name) }}', '{{ addslashes($product->product_pic) }}', parseInt('{{ $product->price }}'))">
+                                <span><span class="icon_bag_alt"></span></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">Nama Produk</a></h6>
+                        <div class="product__price">Harga Produk</div>
+                    </div>
+                </div>
+            </div>
+                    
+    
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-5">
+                    </div>
+                    <div class="col-lg-5">
+                    {{ $products->links('pagination::bootstrap-4') }}
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    </div>
+            </div>
+        </section>
+        <!-- Shop Section End -->
+    
+    
+    
+    </body>
+    
+        <!-- Instagram Begin -->
+        <div class="instagram">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta1.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta2.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta3.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta4.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta5.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                        <a href="https://www.instagram.com/ljbeautyhouse/"><div class="instagram__item set-bg" data-setbg="../public/img/instagram/insta6.jpg">
+                            <div class="instagram__text">
+                                <i class="fa fa-instagram"></i>
+                                <span>@ ljbeautyhouse</span>
+                            </div>
+                        </div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Instagram End -->
+
+        <!-- Footer Section Begin -->
+        <footer>
+        <div class="footer-container" >
+            <div class="footer-logo">
+                <h2>LJ Beauty House</h2>
+            </div>
+           
+            <div class="footer-links">
+                <a href="https://wa.me/6282362052767" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                </a>
+                <a href="https://www.instagram.com/ljbeautyhouse/" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                </a>
+                <a href="https://www.instagram.com/yourinstagramlink" target="_blank">
+                    <img src="https://freepnglogo.com/images/all_img/1697562980facebook-logo-transparent.png" alt="Facebook">
+                </a>
+            </div>
+            <div class="footer-copyright mid">
+                <p>&copy; 2024 LJ Beauty House. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+        <!-- Search End -->
+
+
+
+
+    <!-- Js Plugins -->
+
+    <script src="../public/js/cart.js" type="text/javascript"></script>
+
+    <script src="../public/js/jquery-3.3.1.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="../public/js/jquery.magnific-popup.min.js"></script>
+    <script src="../public/js/jquery-ui.min.js"></script>
+    <script src="../public/js/mixitup.min.js"></script>
+    <script src="../public/js/jquery.countdown.min.js"></script>
+    <script src="../public/js/jquery.slicknav.js"></script>
+    <script src="../public/js/owl.carousel.min.js"></script>
+    <script src="../public/js/jquery.nicescroll.min.js"></script>
+    <script src="../public/js/main.js"></script>
+    
+
+</body>
+</html>
